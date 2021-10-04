@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/newrelic/nr1-slo-r/compare/v1.7.9...v1.8.0) (2021-10-04)
+
+
+### Features
+
+* update semantic release with node ([ea49ac0](https://github.com/newrelic/nr1-slo-r/commit/ea49ac0e2020612ec7ee0ca0479c5bf7dc7c56c9))
+
 ## [1.7.9](https://github.com/newrelic/nr1-slo-r/compare/v1.7.8...v1.7.9) (2021-05-07)
 
 
