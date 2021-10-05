@@ -3,6 +3,9 @@
     "id": "nr1-slo-r-nerdlet",
     "description": "Provides view of all SLO/R SLOs defined on the given Entity",
     "displayName": "SLO/R",
-    "entities": [{ "domain": "APM",  "type": "APPLICATION" }],
-    "actionCategory": "monitor"
+    "context": {
+      "entities": [
+        {"domain": "APM", "type": "APPLICATION"}
+      ]
+    }
 }
