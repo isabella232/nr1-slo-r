@@ -1,3 +1,10 @@
+## [1.8.1](https://github.com/newrelic/nr1-slo-r/compare/v1.8.0...v1.8.1) (2021-10-05)
+
+
+### Bug Fixes
+
+* deprecation changes to nerdlet definition ([b5cf82b](https://github.com/newrelic/nr1-slo-r/commit/b5cf82b2fcef231e0b7380422e1aa74cf12f8191))
+
 # [1.8.0](https://github.com/newrelic/nr1-slo-r/compare/v1.7.9...v1.8.0) (2021-10-04)
 
 
