@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/newrelic/nr1-slo-r/compare/v1.8.1...v1.9.0) (2021-11-05)
+
+
+### Features
+
+* add catalog keywords and categoryTerms ([a599367](https://github.com/newrelic/nr1-slo-r/commit/a599367a161754c7babcb5ddadfc584a955bff86))
+
 ## [1.8.1](https://github.com/newrelic/nr1-slo-r/compare/v1.8.0...v1.8.1) (2021-10-05)
 
 
