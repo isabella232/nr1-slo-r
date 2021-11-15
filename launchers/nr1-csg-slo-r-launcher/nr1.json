@@ -2,6 +2,6 @@
     "schemaType": "LAUNCHER",
     "id": "nr1-slo-r-launcher",
     "description": "Provides view of all SLO/R SLOs defined on service entities available to this user.",
-    "displayName": "SLO/R",
+    "displayName": "SLO/R [MIG]",
     "rootNerdletId": "slo-r-main"
 }

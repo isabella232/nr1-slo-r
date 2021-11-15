@@ -9,6 +9,7 @@ import { validateSLODocVersion } from './slo-versions';
 const uuid = require('uuid/v4');
 
 export const fetchSloDocuments = async function({ entityGuid }) {
+
   const _query = {
     actionType: EntityStorageQuery.FETCH_POLICY_TYPE.NO_CACHE,
     entityGuid: entityGuid,
