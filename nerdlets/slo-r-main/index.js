@@ -12,17 +12,11 @@ import get from 'lodash.get';
 import uniqWith from 'lodash.uniqwith';
 import isEqual from 'lodash.isequal';
 
-import { NoSlosNotification } from '../shared/components';
+import { NoSlosNotification, MigrateSLOForm } from '../shared/components';
 import { fetchSloDocuments } from '../shared/services/slo-documents';
 import { getAlertPolicies } from '../shared/services/alert-policies';
 import { getTags, getEntities } from './queries';
-import {
-  SloCombine,
-  SloList,
-  SloFlows,
-  DefineSLOForm,
-  MigrateSLOForm
-} from './components';
+import { SloCombine, SloList, SloFlows, DefineSLOForm } from './components';
 
 const PAGES = {
   SLO_LIST: SloList,
@@ -332,14 +326,15 @@ export default class SLOR extends Component {
                   }
                   isOpen={isCreateModalActive}
                 />
-                <MigrateSLOForm 
-                slos={slos} 
-                isOpen={isMigrateActive}
-                onClose={() =>
-                  this.setState({
-                    isMigrateActive: false
-                  })
-                } />
+                <MigrateSLOForm
+                  slos={slos}
+                  isOpen={isMigrateActive}
+                  onClose={() =>
+                    this.setState({
+                      isMigrateActive: false
+                    })
+                  }
+                />
               </>
             )}
           </PlatformStateContext.Consumer>
