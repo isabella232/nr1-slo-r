@@ -339,7 +339,9 @@ export default class SLOREntityNedlet extends React.Component {
           >
             <Button
               type={Button.TYPE.PRIMARY}
-              iconType={Button.ICON_TYPE.HARDWARE_AND_SOFTWARE__SOFTWARE__DESTINATIONS}
+              iconType={
+                Button.ICON_TYPE.HARDWARE_AND_SOFTWARE__SOFTWARE__DESTINATIONS
+              }
               onClick={this.handleMigrate}
             >
               Migrate to Service Levels

@@ -275,12 +275,14 @@ export default class SLOR extends Component {
           <StackItem className="toolbar__item toolbar__item--align-right">
             <Button
               type={Button.TYPE.PRIMARY}
-              iconType={Button.ICON_TYPE.HARDWARE_AND_SOFTWARE__SOFTWARE__DESTINATIONS}
+              iconType={
+                Button.ICON_TYPE.HARDWARE_AND_SOFTWARE__SOFTWARE__DESTINATIONS
+              }
               onClick={this.handleMigrate}
             >
               Migrate to Service Levels
             </Button>
-            <StackItem className="toolbar__item toolbar__item--align-right"/>
+            <StackItem className="toolbar__item toolbar__item--align-right" />
             <Button
               type={Button.TYPE.PRIMARY}
               iconType={Button.ICON_TYPE.DOCUMENTS__DOCUMENTS__NOTES__A_ADD}
