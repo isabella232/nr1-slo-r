@@ -218,9 +218,9 @@ export default class MigrateSLOForm extends Component {
     });
 
     console.debug(`result ${result}`); // eslint-disable-line no-console
-    // console.debug(`errs ${errors}`); // eslint-disable-line no-console
 
     if (result.error === null) {
+      // eslint-disable-next-line require-atomic-updates
       slo.document.migrationId = result.data.serviceLevelCreate.id;
       const index = this.state.selectedSLOS.findIndex(s => s.id === slo.id);
       if (index > -1) {
@@ -232,6 +232,8 @@ export default class MigrateSLOForm extends Component {
         entityGuid: slo.document.entityGuid,
         document: slo.document
       });
+    } else {
+      console.debug(`errs ${result.error}`); // eslint-disable-line no-console
     }
   }
 
@@ -257,8 +259,10 @@ export default class MigrateSLOForm extends Component {
             <Checkbox
               key={slo.document.documentId}
               onChange={event => this.registerSlo(event, slo)}
-              label={`${slo.document.name} :: ${slo.document.appName}`}
-              checked={this.state.selectedSLOS.findIndex(s => s.id === slo.id) > -1}
+              label={`${slo.document.name} :: ${slo.document.appName}` + (slo.document.migrationId ? " :: Migration Id: "+slo.document.migrationId : "")}
+              checked={
+                this.state.selectedSLOS.findIndex(s => s.id === slo.id) > -1
+              }
               disabled={slo.document.migrationId !== null}
             />
           </StackItem>

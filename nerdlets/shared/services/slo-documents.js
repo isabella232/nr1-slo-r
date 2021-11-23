@@ -9,7 +9,7 @@ import { validateSLODocVersion } from './slo-versions';
 const uuid = require('uuid/v4');
 
 const updateSloDocuments = async function(docs) {
-  docs.forEach(async (item) => {
+  docs.forEach(async item => {
     if (typeof item.document.migrationId === 'undefined') {
       item.document.migrationId = null;
       await writeSloDocument({
