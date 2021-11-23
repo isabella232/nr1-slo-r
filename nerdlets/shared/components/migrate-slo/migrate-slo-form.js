@@ -11,6 +11,7 @@ import {
   Stack,
   StackItem
 } from 'nr1';
+import { writeSloDocument } from '../../services/slo-documents';
 
 export default class MigrateSLOForm extends Component {
   constructor(props) {
@@ -30,13 +31,18 @@ export default class MigrateSLOForm extends Component {
   // };
 
   registerSlo(event, slo) {
+    const { selectedSLOS } = this.state;
     if (event.target.checked) {
-      this.state.selectedSLOS.push(slo);
+      // this.state.selectedSLOS.push(slo);
+      selectedSLOS.push(slo);
+      this.setState({ selectedSLOS });
     } else {
-      const index = this.state.selectedSLOS.indexOf(slo);
+      const index = this.state.selectedSLOS.findIndex(s => s.id === slo.id);
 
       if (index > -1) {
-        this.state.selectedSLOS.splice(index, 1);
+        // this.state.selectedSLOS.splice(index, 1);
+        selectedSLOS.splice(index, 1);
+        this.setState({ selectedSLOS });
       }
     }
   }
@@ -204,7 +210,7 @@ export default class MigrateSLOForm extends Component {
 
     console.debug(mutation); // eslint-disable-line no-console
 
-    const { result, errors } = await NerdGraphMutation.mutate({
+    const result = await NerdGraphMutation.mutate({
       mutation: ngql`
         mutation{
           ${mutation}
@@ -212,7 +218,21 @@ export default class MigrateSLOForm extends Component {
     });
 
     console.debug(`result ${result}`); // eslint-disable-line no-console
-    console.debug(`errs ${errors}`); // eslint-disable-line no-console
+    // console.debug(`errs ${errors}`); // eslint-disable-line no-console
+
+    if (result.error === null) {
+      slo.document.migrationId = result.data.serviceLevelCreate.id;
+      const index = this.state.selectedSLOS.findIndex(s => s.id === slo.id);
+      if (index > -1) {
+        const { selectedSLOS } = this.state;
+        selectedSLOS.splice(index, 1);
+        this.setState({ selectedSLOS });
+      }
+      await writeSloDocument({
+        entityGuid: slo.document.entityGuid,
+        document: slo.document
+      });
+    }
   }
 
   // this should be repaced with the function already in slo-r
@@ -238,7 +258,8 @@ export default class MigrateSLOForm extends Component {
               key={slo.document.documentId}
               onChange={event => this.registerSlo(event, slo)}
               label={`${slo.document.name} :: ${slo.document.appName}`}
-              // disabled={slo.document.migrated}
+              checked={this.state.selectedSLOS.findIndex(s => s.id === slo.id) > -1}
+              disabled={slo.document.migrationId !== null}
             />
           </StackItem>
         ))}
@@ -271,6 +292,7 @@ export default class MigrateSLOForm extends Component {
               iconType={
                 Button.ICON_TYPE.HARDWARE_AND_SOFTWARE__SOFTWARE__DESTINATIONS
               }
+              disabled={this.state.selectedSLOS.length === 0}
             >
               Migrate
             </Button>
