@@ -259,7 +259,11 @@ export default class MigrateSLOForm extends Component {
             <Checkbox
               key={slo.document.documentId}
               onChange={event => this.registerSlo(event, slo)}
-              label={`${slo.document.name} :: ${slo.document.appName}` + (slo.document.migrationId ? " :: Migration Id: "+slo.document.migrationId : "")}
+              label={`${slo.document.name} :: ${slo.document.appName}${
+                slo.document.migrationId
+                  ? ` :: Migration Id: ${slo.document.migrationId}`
+                  : ''
+              }`}
               checked={
                 this.state.selectedSLOS.findIndex(s => s.id === slo.id) > -1
               }
