@@ -251,6 +251,11 @@ export default class MigrateSLOForm extends Component {
     // const { isOpen, onClose, slos } = this.props;
     const { slos } = this.props;
 
+    const nonMigratableIndicators = ['availability', 'capacity', 'latency'];
+    const inArray = (key, items) => {
+      return items.find(item => item === key);
+    };
+
     return (
       <>
         {slos.map(slo => (
@@ -260,14 +265,21 @@ export default class MigrateSLOForm extends Component {
               key={slo.document.documentId}
               onChange={event => this.registerSlo(event, slo)}
               label={`${slo.document.name} :: ${slo.document.appName}${
+                /* eslint-disable no-nested-ternary, prettier/prettier */
                 slo.document.migrationId
                   ? ` :: Migration Id: ${slo.document.migrationId}`
-                  : ''
+                  : inArray(slo.document.indicator, nonMigratableIndicators)
+                    ? ':: Not Migratable'
+                    : ''
+                /* eslint-enable no-nested-ternary, prettier/prettier */
               }`}
               checked={
                 this.state.selectedSLOS.findIndex(s => s.id === slo.id) > -1
               }
-              disabled={slo.document.migrationId !== null}
+              disabled={
+                slo.document.migrationId !== null ||
+                inArray(slo.document.indicator, nonMigratableIndicators)
+              }
             />
           </StackItem>
         ))}
