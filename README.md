@@ -5,6 +5,22 @@
 
 ![CI](https://github.com/newrelic/nr1-slo-r/workflows/CI/badge.svg) ![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/newrelic/nr1-slo-r?include_prereleases&sort=semver) [![Snyk](https://snyk.io/test/github/newrelic/nr1-slo-r/badge.svg)](https://snyk.io/test/github/newrelic/nr1-slo-r)
 
+
+## Announcement
+
+***New Relic Service Level Management is now in Beta!*** To find out more please take a look at the [docs](https://docs.newrelic.com/docs/service-level-management/intro-slm).
+
+Service Level Management introduces the ability to define and analyse Service Levels with a scalable and centralized user experience.
+
+For users of SLO/R you can migrate the existing SLOs you have defined to this new format. Just follow the instructions in our [migration companion](./docs/slor_slm_migration.md). 
+
+> What does this mean for the future of SLO/R?
+> - We will be retiring SLO/R from the New Relic Apps Catalog. We highly recommend any new users take advantage of the in-product SLM experience as it is far superior to the SLO/R open source project.
+> - We will update this repo to legacy status, and keep the code available as an example of working with SLOs.
+> - For active users of SLO/R we will be reaching out to ensure your transition to the in-product experience is as easy as possible.  
+
+
+
 ## Usage
 
 SLO/R lets you quickly define SLOs for **error**, **availability**, **capacity**, and **latency** conditions.
