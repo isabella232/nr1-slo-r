@@ -32,6 +32,8 @@ import { format } from 'date-fns';
 // slo documents
 import { fetchSloDocuments } from '../shared/services/slo-documents';
 
+import { MigrateSLOForm } from '../shared/components';
+
 /** local */
 import SloList from './components/slo-list';
 import SloForm from './components/slo-form';
@@ -59,6 +61,8 @@ export default class SLOREntityNedlet extends React.Component {
       isActiveCreateModal: false,
       isActiveUpdateModal: false,
       isActiveViewModal: false,
+
+      isMigrateActive: false,
 
       // Update SLO
       editDocumentId: null,
@@ -196,6 +200,10 @@ export default class SLOREntityNedlet extends React.Component {
     }));
   }
 
+  handleMigrate = () => {
+    this.setState({ isMigrateActive: true });
+  };
+
   // Form Callbacks
   async upsertDocumentCallback({ document, response }) {
     if (!response) {
@@ -330,6 +338,15 @@ export default class SLOREntityNedlet extends React.Component {
             horizontalType={Stack.HORIZONTAL_TYPE.RIGHT}
           >
             <Button
+              type={Button.TYPE.PRIMARY}
+              iconType={
+                Button.ICON_TYPE.HARDWARE_AND_SOFTWARE__SOFTWARE__DESTINATIONS
+              }
+              onClick={this.handleMigrate}
+            >
+              Migrate to Service Levels
+            </Button>
+            <Button
               onClick={this.toggleCreateModal}
               type={Button.TYPE.PRIMARY}
               iconType={Button.ICON_TYPE.DOCUMENTS__DOCUMENTS__NOTES__A_ADD}
@@ -346,7 +363,7 @@ export default class SLOREntityNedlet extends React.Component {
   render() {
     // ensure we have state for our slo documents to render the reporting table and configuration options
 
-    const { slo_documents, refreshing } = this.state;
+    const { slo_documents, refreshing, isMigrateActive } = this.state;
 
     if (slo_documents === null && refreshing === true) {
       return (
@@ -401,13 +418,24 @@ export default class SLOREntityNedlet extends React.Component {
           <PlatformStateContext.Consumer>
             {platformUrlState => {
               return (
-                <SloForm
-                  entityGuid={this.state.entityGuid}
-                  upsertDocumentCallback={this.upsertDocumentCallback}
-                  modalToggleCallback={this.toggleCreateModal}
-                  timeRange={platformUrlState.timeRange}
-                  groupList={this.state.groupList}
-                />
+                <div>
+                  <SloForm
+                    entityGuid={this.state.entityGuid}
+                    upsertDocumentCallback={this.upsertDocumentCallback}
+                    modalToggleCallback={this.toggleCreateModal}
+                    timeRange={platformUrlState.timeRange}
+                    groupList={this.state.groupList}
+                  />
+                  <MigrateSLOForm
+                    slos={this.state.slo_documents}
+                    isOpen={isMigrateActive}
+                    onClose={() =>
+                      this.setState({
+                        isMigrateActive: false
+                      })
+                    }
+                  />
+                </div>
               );
             }}
           </PlatformStateContext.Consumer>

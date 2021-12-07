@@ -2,7 +2,7 @@
     "schemaType": "NERDLET",
     "id": "nr1-slo-r-nerdlet",
     "description": "Provides view of all SLO/R SLOs defined on the given Entity",
-    "displayName": "SLO/R",
+    "displayName": "SLO/R [MIG]",
     "context": {
       "entities": [
         {"domain": "APM", "type": "APPLICATION"}

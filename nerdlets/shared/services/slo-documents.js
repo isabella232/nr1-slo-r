@@ -8,6 +8,18 @@ import { validateSLODocVersion } from './slo-versions';
 
 const uuid = require('uuid/v4');
 
+const updateSloDocuments = async function(docs) {
+  docs.forEach(async item => {
+    if (typeof item.document.migrationId === 'undefined') {
+      item.document.migrationId = null;
+      await writeSloDocument({
+        entityGuid: item.document.entityGuid,
+        document: item.document
+      });
+    }
+  });
+};
+
 export const fetchSloDocuments = async function({ entityGuid }) {
   const _query = {
     actionType: EntityStorageQuery.FETCH_POLICY_TYPE.NO_CACHE,
@@ -17,6 +29,9 @@ export const fetchSloDocuments = async function({ entityGuid }) {
 
   const result = await EntityStorageQuery.query(_query);
   const documents = result.data || [];
+  if (documents.length) {
+    updateSloDocuments(documents);
+  }
 
   // documents.forEach((doc) => {
   //   // console.debug('$$$$$$$ ' + JSON.stringify(doc, null, 2));
@@ -213,7 +228,8 @@ export const sloDocumentModel = {
       transactions: [],
       slo_r_version: '1.0.5',
       description: '',
-      tags: []
+      tags: [],
+      migrationId: null
     };
   }
 };

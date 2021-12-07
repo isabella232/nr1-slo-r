@@ -12,7 +12,7 @@ import get from 'lodash.get';
 import uniqWith from 'lodash.uniqwith';
 import isEqual from 'lodash.isequal';
 
-import { NoSlosNotification } from '../shared/components';
+import { NoSlosNotification, MigrateSLOForm } from '../shared/components';
 import { fetchSloDocuments } from '../shared/services/slo-documents';
 import { getAlertPolicies } from '../shared/services/alert-policies';
 import { getTags, getEntities } from './queries';
@@ -37,6 +37,7 @@ export default class SLOR extends Component {
       isRefreshing: true,
       isTableViewActive: false,
       isCreateModalActive: false,
+      isMigrateActive: false,
       lastUpdateDate: new Date(),
       sloToBeEdited: undefined
     };
@@ -131,6 +132,10 @@ export default class SLOR extends Component {
     this.setState({ isCreateModalActive: true });
   };
 
+  handleMigrate = () => {
+    this.setState({ isMigrateActive: true });
+  };
+
   removeFromList = slo => {
     this.setState(prevState => ({
       slos: prevState.slos.filter(prevSlo => {
@@ -151,6 +156,7 @@ export default class SLOR extends Component {
       isTableViewActive,
       lastUpdateDate,
       isCreateModalActive,
+      isMigrateActive,
       sloToBeEdited
     } = this.state;
 
@@ -269,6 +275,16 @@ export default class SLOR extends Component {
           <StackItem className="toolbar__item toolbar__item--align-right">
             <Button
               type={Button.TYPE.PRIMARY}
+              iconType={
+                Button.ICON_TYPE.HARDWARE_AND_SOFTWARE__SOFTWARE__DESTINATIONS
+              }
+              onClick={this.handleMigrate}
+            >
+              Migrate to Service Levels
+            </Button>
+            <StackItem className="toolbar__item toolbar__item--align-right" />
+            <Button
+              type={Button.TYPE.PRIMARY}
               iconType={Button.ICON_TYPE.DOCUMENTS__DOCUMENTS__NOTES__A_ADD}
               onClick={this.handleDefineNewSLO}
             >
@@ -311,6 +327,15 @@ export default class SLOR extends Component {
                     })
                   }
                   isOpen={isCreateModalActive}
+                />
+                <MigrateSLOForm
+                  slos={slos}
+                  isOpen={isMigrateActive}
+                  onClose={() =>
+                    this.setState({
+                      isMigrateActive: false
+                    })
+                  }
                 />
               </>
             )}

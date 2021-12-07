@@ -86,7 +86,7 @@ const getCursorEntities = async _cursorId => {
     });
 
     if (
-      results.data.actor.entitySearch.results !== null ||
+      results.data.actor.entitySearch.results !== null &&
       results.data.actor.entitySearch.results !== undefined
     ) {
       if (results.data.actor.entitySearch.results.nextCursor !== null) {
