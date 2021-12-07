@@ -1,3 +1,13 @@
+## [1.9.1](https://github.com/newrelic/nr1-slo-r/compare/v1.9.0...v1.9.1) (2021-12-07)
+
+
+### Bug Fixes
+
+* change 'OR' to 'AND' in if stmt ([f17e58e](https://github.com/newrelic/nr1-slo-r/commit/f17e58e9d13dad923b8d97b09925cd75c73263e6))
+* eslint errors ([1c62cf7](https://github.com/newrelic/nr1-slo-r/commit/1c62cf7e60c141a5dd468e9690da83af6f0c33cb))
+* Trigger release and changelog generation (via GH Actions) ([abad53d](https://github.com/newrelic/nr1-slo-r/commit/abad53df3cfdcb9236fe40b85b1f474d936e947d))
+* Trigger release with GH Actions ([b332a38](https://github.com/newrelic/nr1-slo-r/commit/b332a38ac4738c5ce3c22bc7ebedf11adffc67df))
+
 # [1.9.0](https://github.com/newrelic/nr1-slo-r/compare/v1.8.1...v1.9.0) (2021-11-05)
 
 
