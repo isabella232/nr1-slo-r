@@ -1,3 +1,16 @@
+# [1.10.0](https://github.com/newrelic/nr1-slo-r/compare/v1.9.1...v1.10.0) (2021-12-08)
+
+
+### Bug Fixes
+
+* security updates ([6a83ba4](https://github.com/newrelic/nr1-slo-r/commit/6a83ba4e0abd08e630830147881cadedcf6bcead))
+* uuid format ([023d75a](https://github.com/newrelic/nr1-slo-r/commit/023d75a4c455f2133d6b01388288574f3c4adbf0))
+
+
+### Features
+
+* adding migration catalog details ([fa54abf](https://github.com/newrelic/nr1-slo-r/commit/fa54abfda4b7a89f77604c803df2dc30f83e4244))
+
 ## [1.9.1](https://github.com/newrelic/nr1-slo-r/compare/v1.9.0...v1.9.1) (2021-12-07)
 
 
