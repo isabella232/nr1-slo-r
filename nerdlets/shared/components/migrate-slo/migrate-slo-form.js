@@ -134,12 +134,12 @@ export default class MigrateSLOForm extends Component {
                               }
                       },
                       {
-                          description: "30 day slo/r window", 
-                          name: "slo/r_target_30d", 
+                          description: "28 day slo/r window", 
+                          name: "slo/r_target_28d", 
                           target: ${slo.document.target}, 
                           timeWindow: {
                               rolling: {
-                                  count: 30, 
+                                  count: 28, 
                                   unit: DAY}
                               }
                       }
@@ -187,12 +187,12 @@ export default class MigrateSLOForm extends Component {
                               }
                       },
                       {
-                          description: "30 day slo/r window", 
-                          name: "slo/r_target_30d", 
+                          description: "28 day slo/r window", 
+                          name: "slo/r_target_28d", 
                           target: ${slo.document.target}, 
                           timeWindow: {
                               rolling: {
-                                  count: 30, 
+                                  count: 28, 
                                   unit: DAY}
                               }
                       }
@@ -291,11 +291,11 @@ export default class MigrateSLOForm extends Component {
     const { isOpen, onClose, slos } = this.props;
     const { isProcessing } = this.state;
 
-    if (Array.isArray(slos)) {
-      slos.forEach(slo => {
-        console.debug(`--> ${JSON.stringify(slo)}`); // eslint-disable-line no-console
-      });
-    } // if
+    // if (Array.isArray(slos)) {
+    //   slos.forEach(slo => {
+    //     console.debug(`--> ${JSON.stringify(slo)}`); // eslint-disable-line no-console
+    //   });
+    // } // if
 
     return (
       <Modal hidden={!isOpen} onClose={onClose}>
