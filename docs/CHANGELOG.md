@@ -1,3 +1,10 @@
+## [1.10.1](https://github.com/newrelic/nr1-slo-r/compare/v1.10.0...v1.10.1) (2022-02-25)
+
+
+### Bug Fixes
+
+* updated max agg period to 28 days ([5e10d21](https://github.com/newrelic/nr1-slo-r/commit/5e10d210ae94c19f2530d246b29d13a98f4acf69))
+
 # [1.10.0](https://github.com/newrelic/nr1-slo-r/compare/v1.9.1...v1.10.0) (2021-12-08)
 
 
